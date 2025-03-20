@@ -1,0 +1,254 @@
+Prvo sam napravila novi javni repozitorij "OS-vježbe" u kojem sam onda kreirala folder "OS1-zadace" i otisla u taj folder da nastavim sa zadatkom
+
+Zadatak 1
+1. Provjerite trenutni radni direktorij
+pwd
+2. Izlistajte sadržaj trenutnog radnog direktorija
+ls
+3. Napravite novi direktorij vjezba1 i prebacite se u njega
+mkdir vjezba1 && cd vjezba1
+4. Unutar direktorija vjezba1 napravite novu datoteku README.md
+touch README.md
+5. Vratite se u početni radni direktorij
+cd ..
+
+Zadatak 2
+1. Napravite praznu datoteku file.txt unutar direktorija vjezba2
+mkdir vjezba2 && cd vjezba2 && touch file.txt
+2. Kopirajte datoteku file.txt u direktorij vjezba2 i nazovite ju file_copy.txt
+cp file.txt file_copy.txt
+3. Ispišite sve datoteke unutar direktorija vjezba2
+ls
+4. Obrišite datoteku file.txt i vratite se u početni radni direktorij
+rm file.txt && cd ..
+5. Pokušajte izbrisati direktorij vjezba2 . Zašto ne možete?
+rmdir vjezba2 -> ne možemo ga izbrisati jer direktorij nije prazan
+
+Zadatak 3
+1. Napravite novi direktorij vjezba3 i unutar njega direktorij backup
+mkdir vjezba3 && cd vjezba3 && mkdir backup
+2. Unutar direktorija vjezba3 napravite 3 datoteke: notes.txt , todo.txt i script.sh
+touch notes.txt && touch todo.txt && touch script.sh
+3. Kopirajte sve datoteke iz direktorija vjezba3 u direktorij backup
+cp notes.txt backup && cp todo.txt backup && cp script.sh backup
+4. Izbrišite samo datoteku script.sh iz direktorija vjezba3 i ispišite sve datoteke
+rm script.sh && ls
+5. U backup dodajte još jedan direktorij koju ćete imenovati USER varijablom
+cd backup && mkdir $USER
+6. Premjestite sve datoteke iz direktorija backup u direktorij nazvan varijablom USER
+mv notes.txt $USER && mv todo.txt $USER
+
+Zadatak 4
+1. Napravite novi direktorij vjezba4 i unutar njega direktorij subfolder
+mkdir vjezba4 && cd vjezba4 && mkdir subfolder
+2. Unutar direktorija vjezba4 napravite datoteku prema nazivu varijable HOSTNAME
+touch $HOSTNAME
+3. Preimenujte novoizrađenu datoteku prema nazivu varijable USER
+mv $HOSTNAME $USER
+4. Premjestite datoteku USER u direktorij subfolder
+mv $USER subfolder
+5. Izbrišite datoteku USER koristeći apsolutnu putanju
+rm /c/Users/anjas/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba4/subfolder/$USER
+
+Pošto na kraju zadatka mi je vjezba4 direktorij prazan, kreirala sam .gitkeep u subfolderu kako bih mogla commitati
+Evo i paste iz terminala u VSC:
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba3/backup (main)
+$ echo $USER
+anjas
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba3/backup (main)
+$ mkdir $USER
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba3/backup (main)
+$ ls
+anjas/  notes.txt  script.sh  todo.txt
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba3/backup (main)
+$ mv notes.txt anjas && mv script.sh anjas && mv todo.txt anjas
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba3/backup (main)
+$ ls
+anjas/
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba3/backup (main)
+$ ls anjas
+notes.txt  script.sh  todo.txt
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba3/backup (main)
+$ cd ..
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba3 (main)
+$ cd ..
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace (main)
+$ mkdir vjezba4
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace (main)
+$ mkdir vjezba4/subfolder
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace (main)
+$ echi $HOSTNAME
+bash: echi: command not found
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace (main)
+$ echo $HOSTNAME
+DESKTOP-82QG8U6
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace (main)
+$ touch vjezba4/$HOSTNAME
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace (main)
+$ cd vjezba4
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba4 (main)
+$ mv $HOSTNAME $USER
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba4 (main)
+$ ls
+anjas  subfolder/
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba4 (main)
+$ mv $USER subfolder
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba4 (main)
+$ rm $USER ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba4/subfolder
+rm: cannot remove 'anjas': No such file or directory
+rm: cannot remove '/c/Users/anjas/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba4/subfolder': Is a directory
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba4 (main)
+$ rm ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba4/subfolder/$USER
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba4 (main)
+$ cd _
+bash: cd: _: No such file or directory
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba4 (main)
+$ cd OS1-zadace
+bash: cd: OS1-zadace: No such file or directory
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba4 (main)
+$ cd ..
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace (main)
+$ touch vjezba4/.gitkeep
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace (main)
+$ $ rm $USER ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba4/subfolder
+bash: $: command not found
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace (main)
+$ rm: cannot remove 'anjas': No such file or directory
+bash: rm:: command not found
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace (main)
+$ touch vjezba4/subfolder/.gitkeep
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace (main)
+$ $ rm $USER ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba4/subfolder
+bash: $: command not found
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace (main)
+$ rm: cannot remove 'anjas': No such file or directory
+bash: rm:: command not found
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace (main)
+$ rm: cannot remove '/c/Users/anjas/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba4/subfolder': Is a directory$ rm $USER ~/OneDrive/Docs/GitH
+ub/OS-vjezbe/OS1-zadace/vjezba4/subfolder
+bash: rm:: command not found
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe (main)
+$ mkdir OS1-zadace
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe (main)
+$ cd OS1-zadace
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace (main)
+$ pwd
+/c/Users/anjas/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace (main)
+$ ls
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace (main)
+$ mkdir vjezba1 && cd vjezba1
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba1 (main)
+$ touch README.md
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba1 (main)
+$ cd ..
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace (main)
+$ mkdir vjezba2 && cd vjezba2 && touch file.txt
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba2 (main)
+$ cp file.txt file_copy.txt
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba2 (main)
+$ ls
+file.txt  file_copy.txt
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba2 (main)
+$ rm file.txt && cd ..
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace (main)
+$ rmdir vjezba2
+rmdir: failed to remove 'vjezba2': Directory not empty
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace (main)
+$ mkdir vjezba3 && cd vjezba3 && mkdir backup
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba3 (main)
+$ touch notes.txt && touch todo.txt && touch script.sh
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba3 (main)
+$ cp notes.txt backup && cp todo.txt backup && cp script.sh backup
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba3 (main)
+$ rm script.sh && ls
+backup/  notes.txt  todo.txt
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba3 (main)
+$ cd backup && mkdir $USER
+mkdir: missing operand
+Try 'mkdir --help' for more information.
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba3/backup (main)
+$ bash $USER
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba3/backup (main)
+$ whoami
+anjas
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba3/backup (main)
+$ USER=$(whoami)
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba3/backup (main)
+$ mkdir $USER
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba3/backup (main)
+$ mv notes.txt $USER && mv todo.txt $USER
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba3/backup (main)
+$ cd ..
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba3 (main)
+$ cd ..
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace (main)
+$ mkdir vjezba4 && cd vjezba4 && mkdir subfolder
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba4 (main)
+$ touch $HOSTNAME
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba4 (main)
+$ mv $HOSTNAME $USER
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba4 (main)
+$ mv $USER subfolder
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba4 (main)
+$ rm /c/Users/anjas/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba4/subfolder/$USER
+
+anjas@DESKTOP-82QG8U6 MINGW64 ~/OneDrive/Docs/GitHub/OS-vjezbe/OS1-zadace/vjezba4 (main)
+$ touch subfolder/.gitkeep
