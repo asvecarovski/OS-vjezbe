@@ -1,0 +1,136 @@
+Zadatak 1
+mkdir OS3-zadace/Zadatak1
+cd OS3-zadace/Zadatak1
+touch 1.txt 2.html 3.css 4.js
+mkdir 1 2 3
+nano main.sh
+
+#!/bin/bash
+
+prvi_argument=$1
+drugi_argument=$2
+
+if [ $# = 2 ]; then
+        if [ -f *"$drugi_argument" ]; then
+                for zapis in "$prvi_argument"/*; do
+                        if [[ -f "$zapis" && "$zapis" == *"$drugi_argument" ]]; then
+                        echo "Datoteka: "$(basename "$zapis")""
+                        fi
+                done
+        else
+                echo "Nema takvih datoteka"
+        fi
+else
+        echo "Potrebno je unijeti točno 2 argumenta"
+        exit
+fi
+
+ex.
+anjas@DESKTOP-82QG8U6:/mnt/c/Users/anjas/OneDrive/Docs/GitHub/OS-vjezbe/OS3-zadace/Zadatak1$ ./main.sh  /mnt/c/Users/anjas/OneDrive/Docs/GitHub/OS-vjezbe/OS3-zadace/Zadatak1 .txt
+Datoteka: 1.txt
+
+ex.
+anjas@DESKTOP-82QG8U6:/mnt/c/Users/anjas/OneDrive/Docs/GitHub/OS-vjezbe/OS3-zadace/Zadatak1$ ./main.sh  /mnt/c/Users/anjas/OneDrive/Docs/GitHub/OS-vjezbe/OS3-zadace/Zadatak1 .tjz
+Nema takvih datoteka
+
+
+Zadatak2
+cd ..
+mkdir Zadatak2
+cd Zadatak2
+nano main.sh
+
+#!/bin/bash
+
+broj=$1
+
+if [[ "$broj" -gt 1 && "$broj" -lt 10 ]]; then
+        touch brojevi.txt
+        niz=()
+        for (( i=1; i<="$broj"; i++ )); do
+                niz+="$i"
+        done
+        echo "$niz" > brojevi.txt
+else
+        echo "Broj mora biti u rasponu od 1 do 10"
+        exit
+fi
+
+ls (da se uvjerim da je tu datoteka xD)
+cat brojevi.txt
+
+ex.
+anjas@DESKTOP-82QG8U6:/mnt/c/Users/anjas/OneDrive/Docs/GitHub/OS-vjezbe/OS3-zadace/Zadatak2$ ./main.sh 77
+Broj mora biti u rasponu od 1 do 10
+
+ex.
+anjas@DESKTOP-82QG8U6:/mnt/c/Users/anjas/OneDrive/Docs/GitHub/OS-vjezbe/OS3-zadace/Zadatak2$ ./main.sh 5
+anjas@DESKTOP-82QG8U6:/mnt/c/Users/anjas/OneDrive/Docs/GitHub/OS-vjezbe/OS3-zadace/Zadatak2$ cat brojevi.txt
+12345
+
+
+Zadatak3
+cd ..
+mkdir Zadatak3
+cd Zadatak3
+touch OS3.md OS3.pdf
+mkdir screenshots
+cd screenshots
+touch bash.png nano.png vim.png
+cd ..
+nano main.sh
+
+#!/bin/bash
+
+cd screenshots
+
+brojac=1
+for  datoteka in ./*; do
+        ime=$(basename "$datoteka")
+        mv "$ime" "screenshot_"$brojac"_"$ime""
+        ((brojac++))
+done
+
+for datoteka in ./*; do
+        echo "$(basename "$datoteka")"
+done
+
+./main.sh
+
+
+Zadatak4
+cd ..
+mkdir Zadatak4
+cd Zadatak4
+mkdir 1
+cd 1
+touch 1.txt 2.txt 3.txt 4.txt
+cd ..
+nano main.txt
+
+#!/bin/bash
+
+naziv_dir=$1
+wd="$(pwd)"/"$naziv_dir"
+
+if [ $# = 1 ]; then
+        if [ ! -d "$wd" ]; then
+                echo "Direktorij ne postoji"
+                exit
+        else
+                cd $wd
+        fi
+
+        function zipper() {
+                naziv="svi_zapisi.zip"
+                zip -r "$naziv" "."
+        }
+
+else
+        echo "Potrebno je proslijediti samo jedan argument"
+        exit
+fi
+
+zipper $wd
+
+ls 1 (da se uvjerim da je tu :D )
