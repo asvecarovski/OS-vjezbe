@@ -1,0 +1,19 @@
+mkdir -p web/css
+mkdir -p web/js
+mkdir -p web/assets
+touch web/index.html web/about.html
+touch web/css/style.css
+touch web/js/script.js
+touch web/assets/img1.png web/assets/img2.jpg
+cd web
+echo 'console.log("Anja Svecarovski")' > js/script.js
+mkdir backup && cp -n js/script.js backup
+mv js/script.js js/script.encrypted.js
+echo "72510dd3f43651d3d35ed0ab487a9b71" > js/script.encrypted.js
+cat js/script.encrypted.js
+godina=1988
+$?
+echo "GODINA=<$godina>" > .env
+cat .env
+ls -lSa --color
+rm -rf assets/* && if [ $? = 0 ]; then echo "Sve datoteke su izbrisane" fi

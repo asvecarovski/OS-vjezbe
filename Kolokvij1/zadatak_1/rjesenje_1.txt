@@ -1,0 +1,19 @@
+mkdir -p fipu_prva/1_sem
+mkdir -p fipu_prva/2_sem
+touch fipu_prva/1_sem/dir.txt fipu_prva/1_sem/ldm.txt fipu_prva/1_sem/ms.txt fipu_prva/1_sem/oikt.txt fipu_prva/1_sem/opz.txt fipu_prva/1_sem/prog.txt
+touch fipu_prva/2_sem/bp1.txt fipu_prva/2_sem/gla.txt fipu_prva/2_sem/is.txt fipu_prva/2_sem/ma.txt fipu_prva/2_sem/os.txt fipu_prva/2_sem/psj.txt
+cd fipu_prva
+echo "ime: Anja" > me.txt
+echo "prezime: Svecarovski" >> me.txt
+echo "JMBAG: 0145027237" >> me.txt
+cat me.txt
+mkdir polozeno
+cp -r 1_sem/* polozeno
+
+touch 1_sem/.salabahter_1.txt 2_sem/.salabahter_2.txt
+ls -lRA
+mkdir salabahteri && cd salabahteri
+mv /mnt/c/Users/anjas/OneDrive/Docs/GitHub/OS-vjezbe/Kolokvij1/zadatak_1/fipu_prva/1_sem/.salabahter_1.txt .
+mv ../2_sem/.salabahter_2.txt .
+cd ../1_sem
+rm -vi *

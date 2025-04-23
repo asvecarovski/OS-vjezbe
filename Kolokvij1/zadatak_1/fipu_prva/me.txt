@@ -1,0 +1,3 @@
+ime: Anja
+prezime: Svecarovski
+JMBAG: 0145027237
