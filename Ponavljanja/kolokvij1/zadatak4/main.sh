@@ -17,7 +17,7 @@ else
 fi
 
 cd "$putanja"
-zip -r "$(realpath "$putanja2")" .
+zip -r "$putanja2" .
 
 if [ $? = 0 ]; then
 	echo "Uspjesno izvršeno"
