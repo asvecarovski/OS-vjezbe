@@ -1,0 +1,16 @@
+mkdir -p Documents/faks/os/kolokvij
+ mv zadaca.md.crdownload Documents/faks/os/kolokvij/zadaca.md
+ echo "kraj" >> Documents/faks/os
+/kolokvij/zadaca.md
+cat Documents/faks/os/kolokvij/z
+adaca.md
+cd Documents/faks/os/kolokvij
+mv zadaca.md ../../../../.Trash
+cd /m
+nt/c/Users/anjas/OneDrive/Docs/GitHub/OS-vjezbe/Ponavljanja/kolokvij1/zadata
+k2/DESKTOP-82QG8U6/Desktop
+ touch tajno.txt os_skrip
+ta.docx sifre.txt
+ mv *.txt ../Documents
+cd ..
+ls -laR --color
