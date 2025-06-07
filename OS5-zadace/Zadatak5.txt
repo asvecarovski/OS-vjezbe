@@ -1,0 +1,151 @@
+ZADATAK 1
+
+sudo apt install python3
+# vec je instaliran (ss atatched)
+
+mkdir python3
+touch hello.py
+sudo chmod 777 hello.py
+# ovo sam napravila jer kada sam kreirala ddatoteku sa nano, napisala i sejvala mi je reklo da nemam permission za to
+# pa sam prvo napravila datoteku, changeala permission da to mogu i onda uredila skriptu
+
+nano hello.py
+
+import time
+print("Hello World!")
+time.sleep(100)
+print("Goodbye World!")
+
+# posto sam prije dodala execute permission onda ne treba sada
+
+python3 hello.py #pokretanje skripte
+
+alt+-> i login u novu sesiju
+htop
+#screenshot atttached gdje se vidi pokrenut proces
+
+Detalji pokrenutog procesa:
+PID 2731- jedinstveni identifikator procesa
+pokrece ga korisnik anja_svecarovski
+Proces koristi ukupno ~18 MiB virtualne memorije, od čega ~10 MiB fizičke memorije, što indicira da se radi o procesu koji koristi jako puno virtualne memorije, ali vrlo malo fizičke memorije. 
+Manji dio fizičke memorije je dijeljen s drugim procesima, ~6.5 MiB
+Proces trenutno spava ( S ), ne zauzima CPU, ali koristi 0.5% fizičke memorije. Procesor je koristio
+ukupno ~01 sekundi od pokretanja.
+Naredba koja je pokrenula proces je python hello.py
+
+3 načina kako bih prekinula taj process naredbom kill
+Pošto naredba kill zahtjeva da znamo PID procesa, imamo 3 načina kako ga "naći"
+1. Iščitamo iz htop, možemo i tražiti sa F3
+2. u novoj sesiji (ako ovaj proces nismo pokrenuli u backgroundu) koirstimo naredbu pidof python3 hello.py
+3. druga naredba je pgreb python3 (ne moramo ni navesti puno ime)
+
+ZADATAK 2
+cd .. #vratila sam se nazad u home direktorij
+sudo mkdir old_dir && sudo mkdir new_dir
+# bez sudo nemamo dopustenje da stvaramo direktorij u home direktoriju
+
+# kreiranje proizvoljnih datoteka u direktoriju old_dir
+# opet sam koristila sudo jer inace nemam dovoljan permission
+
+# ovaj put samo koristila sudo da ne mijenjam permission za novu skriptu
+
+sudo nano prebacaj.sh
+
+#!/bin/bash
+for file in old_dir/*; do
+sudo mc $file new_dir/
+echo "Datoteka je prebacena"
+sleep 1
+done
+
+chmod +x prebacaj.sh
+
+# pokretanje kripte sa zadanim NI prioritetom
+./prebacaj.sh
+
+# pokretanje kripte sa većim NI prioritetom
+sudo nice -n -20 ./prebacaj.sh
+
+# pokretanje kripte sa manjim NI prioritetom
+sudo nice -n 19 ./prebacaj.sh
+
+ZADATAK 3
+
+# iako ne piše (ali pošto nije eksplicitno navedeno kojim userom da to napravim), prebacila sam se u root usera
+
+sudo -i
+sudo groupadd devteam
+sudo mkdir project
+
+sudo useradd -mG devteam korisnik2
+sudo useradd -mG devteam korisnik3
+sudo useradd -mG devteam korisnik4
+
+sudo chown anja_svecarovski:devteam project
+
+chmod 764 project
+
+ZADATAK 4
+
+rwxr-xr-x 755, vlasnik može čitati, pisati i izvršavati, grupa i ostali mogu čitati i izvršavati
+rw-r--r-- 644, vlasnik može čitati i pisati, grupa i ostali samo čitati
+rwx------ 700, vlasnik može čitati, pisati i izvršavati, grupa i ostali ništa
+rw-rw-r-- 664, vlasnik i grupa mogu čitati i pisati, ostali samo čitati
+rwxrwxrwx 777, svi imaju sve dozvole
+r--r--r-- 444, svi mogu samo čitati
+rw------- 600, vlasnik moze čitati i pisati, grupa i ostali ništa
+
+ZADATAK 5
+
+sudo nano apply.sh
+
+#!/bin/bash
+
+if [ $# -ne 2 ]; then
+	echo "Potrebno je unijeti točno dva argumenta"
+	exit 1
+fi
+
+dozvole=$1
+putanja=$2
+
+if [ ${#dozvole} -ne 9 ]; then
+	echo "Dozvole moraju zadržavati točno 9 znakova"
+	exit 2
+fi
+
+niz=0
+suma=""
+
+for ((i=0; i<${#dozvole}; i++)); do
+	znak="${dozvole:$i:1}"
+
+	if [ "$znak" = "r" ]; then
+		niz=$((niz+4))
+	elif [ "$znak" = "w" ]; then
+		niz=$((niz+2))
+	elif [ "$znak" = "x" ]; then
+		niz=$((niz+1))
+	else
+		niz=$((niz+0))
+	fi
+
+	if (( (i + 1 ) % 3 == 0 )); then
+		suma+="$niz"
+		niz=0
+	fi
+done
+
+echo "Dozvole su $suma"
+
+sudo chmod $suma $putanja
+echo "Promijenjene su dozvole"
+
+
+
+sudo chmod +x apply.sh
+
+
+
+
+
